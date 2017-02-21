@@ -2,9 +2,9 @@
 
     angular
         .module('app', ['ngMaterial', 'ngAnimate'])
-        .controller('UsuarioController', ['$scope', 'logger', UsuarioController]);
+        .controller('UsuarioController', ['$scope', '$q', 'logger', UsuarioController]);
 
-    function UsuarioController($scope, logger) {
+    function UsuarioController($scope, $q, logger) {
 
         var usuarioCont = this;
         usuarioCont.usuarios = [];
@@ -15,17 +15,21 @@
         usuarioCont.indexEditar = "";
 
         var Datastore = require('nedb')
-            , db = new Datastore({ filename: 'app/db/usuario.json', autoload: true });
+            , db = new Datastore({ filename: 'db/usuario.json', autoload: true });
 
-        activate();
+        activate().then(function(response){
+            usuarioCont.usuarios = response;
+        });
 
 		/**
 		 * Iniciando os dados.
 		 */
         function activate() {
+            var deferred = $q.defer();
             db.find({}, function(err, newDoc) {
-                usuarioCont.usuarios = newDoc;
+                deferred.resolve(newDoc);
             });
+            return deferred.promise;
         }
 
 		/**

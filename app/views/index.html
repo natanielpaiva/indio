@@ -3,7 +3,7 @@
 
 <head>
 	<title>Exemplo simples</title>
-
+	<meta charset="utf-8" />
 	<link rel='stylesheet' href='http://fonts.googleapis.com/css?family=Roboto:400,500,700,400italic'>
 	<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
       rel="stylesheet">
@@ -33,6 +33,7 @@
 		</md-content>
 		<md-content class="content-container" layout="column" layout-align="left">
 			<md-list>
+
 				<md-list-item ng-repeat="u in usuarioCont.usuarios track by $index">
 					<p>{{u.nome}}</p>
 					<md-button ng-click="usuarioCont.editarUsuario(u, $index)" class="md-icon-button " aria-label="Settings">
