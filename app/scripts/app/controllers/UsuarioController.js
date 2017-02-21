@@ -6,19 +6,15 @@
 
     function UsuarioController($scope, $q, logger) {
 
-        var usuarioCont = this;
-        usuarioCont.usuarios = [];
-        usuarioCont.usuario = { nome: "" };
-        usuarioCont.salvarUsuario = salvarUsuario;
-        usuarioCont.editarUsuario = editarUsuario;
-        usuarioCont.deletarUsuario = deletarUsuario;
-        usuarioCont.indexEditar = "";
+        $scope.usuarios = [];
+        $scope.usuario = { nome: "" };
+        $scope.indexEditar = "";
 
         var Datastore = require('nedb')
             , db = new Datastore({ filename: 'db/usuario.json', autoload: true });
 
-        activate().then(function(response){
-            usuarioCont.usuarios = response;
+        activate().then(function(response) {
+            $scope.usuarios = response;
         });
 
 		/**
@@ -35,38 +31,38 @@
 		/**
 		 * Adicionando novo usuário.
 		 */
-        function salvarUsuario() {
+        $scope.salvarUsuario = function() {
 
-            if (usuarioCont.usuario.nome !== "") {
-                if (usuarioCont.usuario._id) {
-                    db.update({ _id: usuarioCont.usuario._id }, { "nome": usuarioCont.usuario.nome }, {}, function() {
+            if ($scope.usuario.nome !== "") {
+                if ($scope.usuario._id) {
+                    db.update({ _id: $scope.usuario._id }, { "nome": $scope.usuario.nome }, {}, function() {
                     });
 
-                    usuarioCont.usuarios.push(angular.copy(usuarioCont.usuario));
-                    usuarioCont.usuarios.splice(usuarioCont.indexEditar, 1);
-                    usuarioCont.usuario.nome = "";
+                    $scope.usuarios.push(angular.copy($scope.usuario));
+                    $scope.usuarios.splice($scope.indexEditar, 1);
+                    $scope.usuario.nome = "";
                 } else {
-                    logger.info("Adding Usuario: " + usuarioCont.usuario.nome);
+                    logger.info("Adding Usuario: " + $scope.usuario.nome);
 
-                    db.insert({ "nome": usuarioCont.usuario.nome }, function(err, newDoc) {
+                    db.insert({ "nome": $scope.usuario.nome }, function(err, newDoc) {
                     });
 
-                    usuarioCont.usuarios.push(angular.copy(usuarioCont.usuario));
-                    usuarioCont.usuario.nome = "";
+                    $scope.usuarios.push(angular.copy($scope.usuario));
+                    $scope.usuario.nome = "";
                 }
             }
 
-        }
+        };
 
-        function editarUsuario(usuario, index) {
-            usuarioCont.usuario = angular.copy(usuario);
-            usuarioCont.indexEditar = index;
-        }
+        $scope.editarUsuario = function(usuario, index) {
+            $scope.usuario = angular.copy(usuario);
+            $scope.indexEditar = index;
+        };
 
-        function deletarUsuario(_id, index) {
+        $scope.deletarUsuario = function(_id, index) {
             db.remove({ '_id': _id }, {}, function(err, numRemoved) {
             });
-            usuarioCont.usuarios.splice(index, 1);
-        }
+            $scope.usuarios.splice(index, 1);
+        };
     }
 })();

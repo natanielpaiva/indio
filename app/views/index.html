@@ -23,10 +23,10 @@
 <body>
 	<div ng-controller="UsuarioController as usuarioCont" layout="column">
 		<md-content md-theme="docs-dark">
-			<form ng-submit="usuarioCont.salvarUsuario()" layout="row" layout-align="center center">
+			<form ng-submit="salvarUsuario()" layout="row" layout-align="center center">
 				<md-input-container flex >
 					<label>Digite seu nome</label>
-					<input  ng-model="usuarioCont.usuario.nome">
+					<input  ng-model="usuario.nome">
 				</md-input-container>
 				<md-button class="md-primary" type="submit" aria-label="Salvar Usuário">Salvar</md-button>
 			</form>
@@ -34,12 +34,12 @@
 		<md-content class="content-container" layout="column" layout-align="left">
 			<md-list>
 
-				<md-list-item ng-repeat="u in usuarioCont.usuarios track by $index">
+				<md-list-item ng-repeat="u in usuarios track by $index">
 					<p>{{u.nome}}</p>
-					<md-button ng-click="usuarioCont.editarUsuario(u, $index)" class="md-icon-button " aria-label="Settings">
+					<md-button ng-click="editarUsuario(u, $index)" class="md-icon-button " aria-label="Settings">
 						<i class="material-icons">mode_edit</i>
 					</md-button>
-					<md-button ng-click="usuarioCont.deletarUsuario(u._id, $index)" class="md-icon-button "  aria-label="Settings">
+					<md-button ng-click="deletarUsuario(u._id, $index)" class="md-icon-button "  aria-label="Settings">
 						<i class="material-icons">delete</i>
 					</md-button>
 					
