@@ -29,7 +29,7 @@ app.on('ready', function() {
     // Criando a Janela principal
     mainWindow = new BrowserWindow({
         name: "indio",
-        width: 800,
+        width: 400,
         height: 600,
         toolbar: false
     });
@@ -38,7 +38,7 @@ app.on('ready', function() {
     mainWindow.loadURL('file://' + __dirname + "/views/index.html");
 
     // Já abre o web developer tools do google chromer
-    //mainWindow.webContents.openDevTools({detach:true});
+    // mainWindow.webContents.openDevTools({detach:true});
 
     // Fecha a janela
     mainWindow.on('closed', function() {

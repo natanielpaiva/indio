@@ -8,9 +8,9 @@
 	    // Configure a dark theme with primary foreground yellow
 	    $mdThemingProvider
 	    	.theme('docs-dark', 'default')
-	    	.primaryPalette('yellow')
+	    	.primaryPalette('red')
 	    	.dark()
-    		.foregroundPalette['3'] = 'yellow';
+    		.foregroundPalette['3'] = 'red';
 	}
 
 })();
