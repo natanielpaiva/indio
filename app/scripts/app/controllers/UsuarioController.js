@@ -49,6 +49,7 @@
 
                     $scope.usuarios.push(angular.copy($scope.usuario));
                     $scope.usuario.nome = "";
+                    delete $scope.usuario._id;
                 }
             }
 
