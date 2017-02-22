@@ -34,7 +34,7 @@ function createWindow () {
     minHeight: 800,
     backgroundColor: '#312450',
     show: false,
-    icon: path.join(__dirname, 'assets/icons/png/64x64.png')
+    icon: path.join(__dirname, 'assets/icons/png/nissan-logo-2.png')
   })
 
   // and load the index.html of the app.
@@ -64,7 +64,7 @@ function createWindow () {
     minHeight: 600,
     backgroundColor: '#312450',
     show: false,
-    icon: path.join(__dirname, 'assets/icons/png/64x64.png'),
+    icon: path.join(__dirname, 'assets/icons/png/nissan-logo-2.png'),
     parent: mainWindow
   })
 
