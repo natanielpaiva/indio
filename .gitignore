@@ -6,6 +6,7 @@ dist
 release
 /app/node_modules
 /db
+/app/electron-packager
 #files
 *.tgz
 *.log
