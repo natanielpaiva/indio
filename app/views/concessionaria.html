@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>Perfil</title>
+	<meta charset="utf-8" />
+	<link rel="stylesheet" type="text/css" href="../node_modules/bootstrap/dist/css/bootstrap.css" />
+
+	<script type="text/javascript" src="../node_modules/angular/angular.js"></script>
+	<script type="text/javascript" src="../node_modules/angular-aria/angular-aria.js"></script>
+	<script type="text/javascript" src="../node_modules/angular-animate/angular-animate.js"></script>
+	
+
+	<script type="text/javascript" src="../scripts/index.js"></script>
+	<script type="text/javascript" src="../scripts/app/controllers/ConcessionariaController.js"></script>
+	<script type="text/javascript" src="../scripts/app/config.js"></script>
+
+</head>
+
+<body>
+	<div ng-controller="ConcessionariaController as apelido">
+		<form ng-submit="salvar()">
+			<div class="row">
+				<div class="col-md-6">
+					<div class="form-control">
+						<label>Nickname</label>
+						<input type="text" ng-model="concessionaria.nickname" />
+					</div>
+					
+				</div>
+				<div class="col-md-6">
+					<div class="form-control">
+						<label>BIR</label>
+						<input type="number" ng-model="concessionaria.bir" />
+					</div>
+				</div>
+				<div class="col-md-12">
+					<div class="form-control">
+						<input type="submit" value="Salvar" />
+					</div>
+				</div>
+			</div>
+		</form>
+
+		<table class="table">
+			<tr>
+				<th>
+					Nickname
+				</th>
+				<th>
+					BIR
+				</th>
+			</tr>
+			<tr ng-repeat="c in concessionarias track by $index">
+				<td>
+					{{c.nickname}}
+				</td>
+				<td>
+					{{c.bir}}
+				</td>
+			</tr>
+		</table>		
+
+	</div>
+</body>
+
+</html>

@@ -2,15 +2,8 @@
 
 	angular
 		.module('app')
-		.config(['$mdThemingProvider', configure]);
+		.config([]);
 
-	function configure($mdThemingProvider) {
-	    // Configure a dark theme with primary foreground yellow
-	    $mdThemingProvider
-	    	.theme('docs-dark', 'default')
-	    	.primaryPalette('red')
-	    	.dark()
-    		.foregroundPalette['3'] = 'red';
-	}
+
 
 })();
