@@ -1,5 +1,5 @@
 (function() {
-
+    //Teste do git no VSCode. Igor
     angular
         .module('app', ['ngAnimate'])
         .controller('ConcessionariaController', ['$scope', '$q', 'logger', ConcessionariaController]);
