@@ -1,6 +1,7 @@
 (function() {
     //Teste do git no VSCode. Igor
     //Funciona
+    //Outro teste
     angular
         .module('app', ['ngAnimate'])
         .controller('ConcessionariaController', ['$scope', '$q', 'logger', ConcessionariaController]);
@@ -15,7 +16,7 @@
             , db = new Datastore({ filename: 'db/concessionaria.json', autoload: true });
 
 
-        // var usuario = new Datastore({ filename: 'db/usuario.json', autoload: true });    
+        // var usuario = new Datastore({ filename: 'db/usuario.json', autoload: true });
 
         activate().then(function(response) {
             $scope.concessionarias = response;
@@ -39,8 +40,8 @@
 
             if ($scope.concessionaria.nickname !== "") {
                 if ($scope.concessionaria._id !== undefined && $scope.concessionaria._id !== "") {
-                    db.update({ _id: $scope.concessionaria._id }, 
-                        { 
+                    db.update({ _id: $scope.concessionaria._id },
+                        {
                             "nickname": $scope.concessionaria.nickname,
                             "bir" :$scope.concessionaria.bir
                         }, {}, function() {
@@ -52,9 +53,9 @@
                     $scope.concessionaria.bir = "";
                 } else {
 
-                    db.insert({ 
+                    db.insert({
                             "nickname": $scope.concessionaria.nickname,
-                            "bir": $scope.concessionaria.bir 
+                            "bir": $scope.concessionaria.bir
                         }, function(err, newDoc) {
                     });
 
