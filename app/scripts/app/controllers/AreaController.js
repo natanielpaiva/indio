@@ -10,7 +10,7 @@ myApp.controller('AreaController', function($scope, $q) {
         //var concessionaria = new Datastore({ filename: 'db/concessionaria.json', autoload: true });
 
         activate().then(function(response) {
-            $scope.concessionarias = response;
+            $scope.areas = response;
         });
 
 		/**
