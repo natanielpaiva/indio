@@ -5,3 +5,5 @@ dist: precise
 os: linux
 install:
   - npm install
+exclude_paths:
+- "app/scripts/app/controllers/UsuarioController.js"
