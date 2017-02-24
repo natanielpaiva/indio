@@ -1,3 +1,7 @@
+language: node_js
+node_js: "6"
+group: stable
+dist: precise
+os: linux
 install:
-  - bundle install --path vendor/bundle
   - npm install
