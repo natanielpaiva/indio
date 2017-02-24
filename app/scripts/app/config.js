@@ -1,6 +1,6 @@
 (function() {
 
 	angular
-		.module('app')
+		.module('app',[])
 		.config([]);
 })();
