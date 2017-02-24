@@ -18,7 +18,7 @@
 </head>
 
 <body>
-	<div ng-controller="ConcessionariaController as apelido">
+	<div ng-app="app" ng-controller="ConcessionariaController as apelido">
 		<form ng-submit="salvar()">
 			<div class="row">
 				<div class="col-md-6">
@@ -43,21 +43,11 @@
 		</form>
 
 		<table class="table">
-			<tr>
-				<th>
-					Nickname
-				</th>
-				<th>
-					BIR
-				</th>
-			</tr>
-			<tr ng-repeat="c in concessionarias track by $index">
-				<td>
-					{{c.nickname}}
-				</td>
-				<td>
-					{{c.bir}}
-				</td>
+			<th> Nickname </th>
+			<th> BIR </th>
+			<tr ng-repeat="c in concessionarias">
+				<td> {{ c.nickname }} </td>
+				<td> {{ c.bir }} </td>
 			</tr>
 		</table>		
 
