@@ -11,14 +11,17 @@
 	<script type="text/javascript" src="../node_modules/angular-animate/angular-animate.js"></script>
 	
 
-	<script type="text/javascript" src="../scripts/index.js"></script>
-	<script type="text/javascript" src="../scripts/app/controllers/ConcessionariaController.js"></script>
+	<!-- <script type="text/javascript" src="../scripts/index.js"></script> -->
 	<script type="text/javascript" src="../scripts/app/config.js"></script>
+	<script type="text/javascript" src="../scripts/app/controllers/ConcessionariaController.js"></script>
 
+
+	
 </head>
 
-<body>
-	<div ng-app="app" ng-controller="ConcessionariaController as apelido">
+<body >
+  <div ng-app="myApp" >
+	<div ng-controller="ConcessionariaController">
 		<form ng-submit="salvar()">
 			<div class="row">
 				<div class="col-md-6">
@@ -57,6 +60,7 @@
 			</tbody>
 		</table>		
 
+	</div>
 	</div>
 </body>
 

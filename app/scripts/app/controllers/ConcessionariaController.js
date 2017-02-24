@@ -1,18 +1,11 @@
-(function() {
-    //Teste do git no VSCode. Igor
-    //Funciona
-    angular
-        .module('app', ['ngAnimate'])
-        .controller('ConcessionariaController', ['$scope', '$q', 'logger', ConcessionariaController]);
-
-    function ConcessionariaController($scope, $q, logger) {
+myApp.controller('ConcessionariaController', function($scope, $q) {
 
         $scope.concessionarias = [];
         $scope.concessionaria = { nickname: "", bir:"" };
         $scope.indexEditar = "";
 
         var Datastore = require('nedb')
-            , db = new Datastore({ filename: 'db/concessionaria.json', autoload: true });
+            , db = new Datastore({ filename: 'db/concessionaria.db', autoload: true });
 
 
         // var usuario = new Datastore({ filename: 'db/usuario.json', autoload: true });    
@@ -77,5 +70,4 @@
             });
             $scope.concessionarias.splice(index, 1);
         };
-    }
-})();
+   });

@@ -1,6 +1,2 @@
-(function() {
-
-	angular
-		.module('app',[])
-		.config([]);
-})();
+var myApp = angular
+		.module('myApp',[]);

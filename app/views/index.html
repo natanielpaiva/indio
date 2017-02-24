@@ -2,41 +2,22 @@
 <html>
 
 <head>
-	<title>Exemplo simples</title>
-	<meta charset="utf-8" />
-	<!-- <link rel='stylesheet' href='http://fonts.googleapis.com/css?family=Roboto:400,500,700,400italic'>
-	<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
-      rel="stylesheet">
-	<link rel="stylesheet" type="text/css" href="../node_modules/angular-material/angular-material.css">  -->
-
-	<script type="text/javascript" src="../node_modules/angular/angular.js"></script>
-	<script type="text/javascript" src="../node_modules/angular-aria/angular-aria.js"></script>
-	<script type="text/javascript" src="../node_modules/angular-animate/angular-animate.js"></script>
-	<script type="text/javascript" src="../node_modules/angular-material/angular-material.js"></script>
-
-	<script type="text/javascript" src="../scripts/index.js"></script>
-	<script type="text/javascript" src="../scripts/app/controllers/UsuarioController.js"></script>
-	<script type="text/javascript" src="../scripts/app/config.js"></script>
-
+    <title>Exemplo simples</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" type="text/css" href="../node_modules/bootstrap/dist/css/bootstrap.css" />
 </head>
 
 <body>
-	<div ng-controller="UsuarioController as usuarioCont">
-		<form ng-submit="salvarUsuario()">
-			<label>Digite seu nome</label>
-			<input  ng-model="usuario.nome">
-			<button class="button" type="submit">Salvar</button>
-		</form>
-
-		<table class="table">
-			<thead ng-repeat="u in usuarios track by $index">
-				<th>{{u.nome}}</th>
-				<button ng-click="editarUsuario(u, $index)" class="button ">Editar</button>
-				<button ng-click="deletarUsuario(u._id, $index)" class="button ">Deletar</button>
-			</thead>					
-		</table>
-	</div>
-
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#">Indio</a>
+            </div>
+            <ul class="nav navbar-nav">
+                <li><a href="concessionaria.html">Cadastro de Concessionária</a></li>
+            </ul>
+        </div>
+    </nav>
 </body>
 
 </html>

@@ -7,10 +7,10 @@ function boot() {
 	// Get logger instance and inject it in Angular
 	const logger = remote.getGlobal('logger');
 	angular
-		.module('app',[])
+		.module('myApp',[])
 		.value('logger', logger);
 
-	angular.bootstrap(document, ['app'], {
+	angular.bootstrap(document, ['myApp'], {
 		strictDi: true
 	});
 }
