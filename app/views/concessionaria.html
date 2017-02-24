@@ -24,42 +24,50 @@
 	<div ng-controller="ConcessionariaController">
 		<form ng-submit="salvar()">
 			<div class="row">
-				<div class="col-md-6">
-					<div class="form-control">
+				<div class="col-md-4">
+					<div class="form-group">
 						<label>Nickname</label>
-						<input type="text" ng-model="concessionaria.nickname" />
+						<input type="text" class="form-control" ng-model="concessionaria.nickname" />
 					</div>
 					
 				</div>
-				<div class="col-md-6">
-					<div class="form-control">
+				<div class="col-md-4">
+					<div class="form-group">
 						<label>BIR</label>
-						<input type="number" ng-model="concessionaria.bir" />
+						<input type="number" class="form-control" ng-model="concessionaria.bir" />
 					</div>
 				</div>
-				<div class="col-md-12">
-					<div class="form-control">
-						<input type="submit" value="Salvar" />
+				<div class="col-md-8">
+					<div class="form-group">
+						<button type="button" class="btn btn-primary btn-block" ng-click="salvar()">Incluir</button>
 					</div>
 				</div>
 			</div>
 		</form>
 
-		<table class="table">
-			<thead>
-				<tr>
-					<th> Nickname </th>
-					<th> BIR </th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr ng-repeat="c in concessionarias">
-					<td> {{ c.nickname }} </td>
-					<td> {{ c.bir }} </td>
-				</tr>
-			</tbody>
-		</table>		
+		<div class="col-md-8">	
+			<table class="table table-striped">
+				<thead>
+					<tr>
+						<th> Nickname </th>
+						<th> BIR </th>
+						<th> Ações </th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr ng-repeat="c in concessionarias track by $index">
+						<td> {{ c.nickname }} </td>
+						<td> {{ c.bir }} </td>
+						<td> 
+							<button type="button" class="btn btn-primary btn-xs" ng-click="editar(c, $index)">Editar</button> 
+						 	<button type="button" class="btn btn-primary btn-xs" ng-click="deletar(c._id)">Deletar</button> 
+						</td>
+				</div>
 
+					</tr>
+				</tbody>
+			</table>		
+		</div>
 	</div>
 	</div>
 </body>
