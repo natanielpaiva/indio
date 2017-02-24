@@ -43,12 +43,18 @@
 		</form>
 
 		<table class="table">
-			<th> Nickname </th>
-			<th> BIR </th>
-			<tr ng-repeat="c in concessionarias">
-				<td> {{ c.nickname }} </td>
-				<td> {{ c.bir }} </td>
-			</tr>
+			<thead>
+				<tr>
+					<th> Nickname </th>
+					<th> BIR </th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="c in concessionarias">
+					<td> {{ c.nickname }} </td>
+					<td> {{ c.bir }} </td>
+				</tr>
+			</tbody>
 		</table>		
 
 	</div>

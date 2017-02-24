@@ -12,7 +12,7 @@
         $scope.indexEditar = "";
 
         var Datastore = require('nedb')
-            , concessionaria = new Datastore({ filename: 'db/concessionaria.json', autoload: true });
+            , db = new Datastore({ filename: 'db/concessionaria.json', autoload: true });
 
 
         // var usuario = new Datastore({ filename: 'db/usuario.json', autoload: true });    
@@ -26,7 +26,7 @@
 		 */
         function activate() {
             var deferred = $q.defer();
-            concessionaria.find({}, function(err, newDoc) {
+            db.find({}, function(err, newDoc) {
                 deferred.resolve(newDoc);
             });
             return deferred.promise;
@@ -39,7 +39,7 @@
 
             if ($scope.concessionaria.nickname !== "") {
                 if ($scope.concessionaria._id !== undefined && $scope.concessionaria._id !== "") {
-                    concessionaria.update({ _id: $scope.concessionaria._id }, 
+                    db.update({ _id: $scope.concessionaria._id }, 
                         { 
                             "nickname": $scope.concessionaria.nickname,
                             "bir" :$scope.concessionaria.bir
@@ -52,7 +52,7 @@
                     $scope.concessionaria.bir = "";
                 } else {
 
-                    concessionaria.insert({ 
+                    db.insert({ 
                             "nickname": $scope.concessionaria.nickname,
                             "bir": $scope.concessionaria.bir 
                         }, function(err, newDoc) {
