@@ -1,4 +1,6 @@
+
 myApp.controller('ConcessionariaController', function($scope, $q) {
+
 
         $scope.concessionarias = [];
         $scope.concessionaria = { nickname: "", bir:"" };
@@ -8,7 +10,7 @@ myApp.controller('ConcessionariaController', function($scope, $q) {
             , db = new Datastore({ filename: 'db/concessionaria.db', autoload: true });
 
 
-        // var usuario = new Datastore({ filename: 'db/usuario.json', autoload: true });    
+        // var usuario = new Datastore({ filename: 'db/usuario.json', autoload: true });
 
         activate().then(function(response) {
             $scope.concessionarias = response;
@@ -32,8 +34,8 @@ myApp.controller('ConcessionariaController', function($scope, $q) {
 
             if ($scope.concessionaria.nickname !== "") {
                 if ($scope.concessionaria._id !== undefined && $scope.concessionaria._id !== "") {
-                    db.update({ _id: $scope.concessionaria._id }, 
-                        { 
+                    db.update({ _id: $scope.concessionaria._id },
+                        {
                             "nickname": $scope.concessionaria.nickname,
                             "bir" :$scope.concessionaria.bir
                         }, {}, function() {
@@ -45,9 +47,9 @@ myApp.controller('ConcessionariaController', function($scope, $q) {
                     $scope.concessionaria.bir = "";
                 } else {
 
-                    db.insert({ 
+                    db.insert({
                             "nickname": $scope.concessionaria.nickname,
-                            "bir": $scope.concessionaria.bir 
+                            "bir": $scope.concessionaria.bir
                         }, function(err, newDoc) {
                     });
 
@@ -70,4 +72,6 @@ myApp.controller('ConcessionariaController', function($scope, $q) {
             });
             $scope.concessionarias.splice(index, 1);
         };
+
    });
+
