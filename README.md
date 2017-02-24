@@ -1,3 +1,2 @@
 # Projeto Indio 
-
-https://travis-ci.org/natanielpaiva/indio.svg?branch=master
+<img src="https://travis-ci.org/natanielpaiva/indio.svg?branch=master"  />
