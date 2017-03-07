@@ -71,7 +71,6 @@ myApp.controller('ConcessionariaController', function($scope, $q) {
             db.remove({ '_id': _id }, {}, function(err, numRemoved) {
             });
             $scope.concessionarias.splice(index, 1);
-        };
-
+        };        
    });
 

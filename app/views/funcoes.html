@@ -1,85 +1,81 @@
 <!DOCTYPE html>
 <html>
+	<head>
+		<title>Funções</title>
+		<meta charset="utf-8" />
+		<link rel="stylesheet" type="text/css" href="../node_modules/bootstrap/dist/css/bootstrap.css" />
 
-<head>
-	<title>Funções</title>
-	<meta charset="utf-8" />
-	<link rel="stylesheet" type="text/css" href="../node_modules/bootstrap/dist/css/bootstrap.css" />
+		<script type="text/javascript" src="../node_modules/angular/angular.js"></script>
+		<script type="text/javascript" src="../node_modules/angular-aria/angular-aria.js"></script>
+		<script type="text/javascript" src="../node_modules/angular-animate/angular-animate.js"></script>
+		<script type="text/javascript" src="../scripts/app/config.js"></script>
+		<script type="text/javascript" src="../scripts/app/controllers/FuncaoController.js"></script>
+	</head>
 
-	<script type="text/javascript" src="../node_modules/angular/angular.js"></script>
-	<script type="text/javascript" src="../node_modules/angular-aria/angular-aria.js"></script>
-	<script type="text/javascript" src="../node_modules/angular-animate/angular-animate.js"></script>
-	
-
-	<!-- <script type="text/javascript" src="../scripts/index.js"></script> -->
-	<script type="text/javascript" src="../scripts/app/config.js"></script>
-	<script type="text/javascript" src="../scripts/app/controllers/FuncaoController.js"></script>
-</head>
-
-<body>
-    <nav class="navbar navbar-default">
-        <div class="container-fluid">
-            <div class="navbar-header">
-                <a class="navbar-brand" href="#">AppIndio</a>
-            </div>
-            <ul class="nav navbar-nav">
-                <li><a href="concessionaria.html">Cadastro de Concessionária</a></li>
-                <li><a href="area.html">Cadastro de Áreas</a></li>
-                 <li><a href="funcoes.html">Cadastro de Funções</a></li>
-            </ul>
-        </div>
-    </nav>
-
-
-  <div ng-app="myApp" >
-	<div ng-controller="FuncaoController">
-		<form ng-submit="salvar()">
-			<div class="row">
-				<div class="col-md-4">
-					<div class="form-group">
-						<label>Nome da Função</label>
-						<input type="text" class="form-control" ng-model="funcao.nome"/>
-					</div>
+	<body>
+		<nav class="navbar navbar-default">
+			<div class="container-fluid">
+				<div class="navbar-header">
+					<a class="navbar-brand" href="index.html">Placar de Performance</a>
 				</div>
-				<div class="col-md-4">
-					<div class="form-group">
-						<label>Área</label>
-						<select ng-options="area as area.nome for area in areas" ng-model="funcao.area"></select>
+				<ul class="nav navbar-nav">
+					<li><a href="concessionaria.html">Cadastro de Concessionária</a></li>
+					<li><a href="area.html">Cadastro de Áreas</a></li>
+					<li class="active"><a href="funcoes.html">Cadastro de Funções</a></li>
+				</ul>
+			</div>
+		</nav>
+
+
+		<div ng-app="myApp" >
+			<div ng-controller="FuncaoController">
+				<form ng-submit="salvar()">
+					<div class="row">
+						<div class="col-md-4">
+							<div class="form-group">
+								<label>Nome da Função</label>
+								<input type="text" class="form-control" ng-model="funcao.nome"/>
+							</div>
+						</div>
+						<div class="col-md-4">
+							<div class="form-group">
+								<label>Área</label>
+								<select ng-options="area as area.nome for area in areas" ng-model="funcao.area"></select>
+							</div>
+						</div>
+						
+						<div class="col-md-2">
+							<div class="form-group">
+								<button type="button" class="btn btn-primary btn-block" ng-click="salvar()">Salvar</button>
+							</div>
+						</div>
 					</div>
-				</div>
-				
-				<div class="col-md-2">
-					<div class="form-group">
-						<button type="button" class="btn btn-primary btn-block" ng-click="salvar()">Salvar</button>
-					</div>
+				</form>
+
+				<div class="col-md-8">	
+					<table class="table table-striped">
+						<thead>
+							<tr>
+								<th> Função </th>
+								<th> Area </th>
+								<th> Ações </th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr ng-repeat="a in funcoes track by $index">
+								<td> {{ a.nome }} </td>
+								<td> {{ a.area.nome }} </td>
+								<td> 
+									<button type="button" class="btn btn-primary btn-xs" ng-click="editar(a, $index)">Editar</button> 
+									<button type="button" class="btn btn-primary btn-xs" ng-click="deletar(a._id)">Deletar</button> 
+								</td>
+							</tr>
+						</tbody>
+					</table>		
+
 				</div>
 			</div>
-		</form>
-
-		<div class="col-md-8">	
-			<table class="table table-striped">
-				<thead>
-					<tr>
-						<th> Função </th>
-						<th> Area </th>
-						<th> Ações </th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr ng-repeat="a in funcoes track by $index">
-						<td> {{ a.nome }} </td>
-						<td> {{ a.area.nome }} </td>
-						<td> 
-							<button type="button" class="btn btn-primary btn-xs" ng-click="editar(a, $index)">Editar</button> 
-						 	<button type="button" class="btn btn-primary btn-xs" ng-click="deletar(a._id)">Deletar</button> 
-						</td>
-					</tr>
-				</tbody>
-			</table>		
-
 		</div>
-	</div>
-  </div>
-</body>
+	</body>
 
 </html>

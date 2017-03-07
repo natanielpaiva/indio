@@ -28,9 +28,9 @@ let secondWindow
 function createWindow () {
   // Create the browser window.
   mainWindow = new BrowserWindow({titleBarStyle: 'hidden',
-    width: 1281,
+    width: 1280,
     height: 800,
-    minWidth: 1281,
+    minWidth: 1280,
     minHeight: 800,
     backgroundColor: '#312450',
     show: false,

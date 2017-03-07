@@ -20,7 +20,7 @@
     <nav class="navbar navbar-default">
         <div class="container-fluid">
             <div class="navbar-header">
-                <a class="navbar-brand" href="#">Indio</a>
+                <a class="navbar-brand" href="index.html">Placar de Performance</a>
             </div>
             <ul class="nav navbar-nav">
                 <li class="active"><a href="concessionaria.html">Cadastro de Concessionária</a></li>
@@ -31,32 +31,28 @@
     </nav>
 
 
-  <div ng-app="myApp" >
-	<div ng-controller="ConcessionariaController">
-		<form ng-submit="salvar()">
-			<div class="row">
-				<div class="col-md-4">
-					<div class="form-group">
-						<label>Nickname</label>
-						<input type="text" class="form-control" ng-model="concessionaria.nickname" />
-					</div>
-					
-				</div>
-				<div class="col-md-4">
-					<div class="form-group">
-						<label>BIR</label>
-						<input type="number" class="form-control" ng-model="concessionaria.bir" />
-					</div>
-				</div>
-				<div class="col-md-8">
-					<div class="form-group">
-						<button type="button" class="btn btn-primary btn-block" ng-click="salvar()">Salvar</button>
-					</div>
-				</div>
+  <div ng-app="myApp" ng-controller="ConcessionariaController">
+	<form class="form-horizontal" ng-submit="salvar()">
+		<div class="form-group">
+			<div class="col-sm-1">
 			</div>
-		</form>
+			<div class="col-sm-4">
+				<label>Nickname</label>
+				<input type="text" class="form-control" ng-model="concessionaria.nickname" />
+			</div>
+			<div class="col-sm-3">
+				<label>BIR</label>
+				<input type="number" class="form-control" ng-model="concessionaria.bir" />
+			</div>
+			<div class="form-group-btn">
+				<button type="button" class="btn btn-default" ng-click="salvar()">Salvar</button>
+			</div>
+		</div>
+	</form>
 
-		<div class="col-md-8">	
+		<div class="col-sm-1">
+		</div>		
+		<div class="col-md-7">	
 			<table class="table table-striped">
 				<thead>
 					<tr>
@@ -73,13 +69,10 @@
 							<button type="button" class="btn btn-primary btn-xs" ng-click="editar(c, $index)">Editar</button> 
 						 	<button type="button" class="btn btn-primary btn-xs" ng-click="deletar(c._id)">Deletar</button> 
 						</td>
-				</div>
-
 					</tr>
 				</tbody>
 			</table>		
 		</div>
-	</div>
 	</div>
 </body>
 
