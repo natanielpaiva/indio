@@ -7,7 +7,6 @@ myApp.controller('AreaController', function($scope, $q) {
 
         var Datastore = require('nedb')
             , db_area = new Datastore({ filename: 'db/area.db', autoload: true });
-        //var concessionaria = new Datastore({ filename: 'db/concessionaria.json', autoload: true });
 
         activate().then(function(response) {
             $scope.areas = response;
@@ -24,38 +23,50 @@ myApp.controller('AreaController', function($scope, $q) {
             return deferred.promise;
         }
 
+
+        function salvarArea(){
+            var deferred = $q.defer();
+            db_area.insert({
+                    "nome": $scope.area.nome
+                }, function(err, newDoc) {
+                    deferred.resolve(newDoc);
+             });
+             return deferred.promise;
+        }
+
+
 		/**
 		 * Adicionando .
 		 */
         $scope.salvar = function() {
 
             if ($scope.area.nome !== "") {
-                if ($scope.area._id !== undefined && $scope.area._id !== "") {
+                if ($scope.area._id == undefined) {
+
+                    
+                    salvarArea().then(function(response){
+                        $scope.areas.push(angular.copy(response));  
+                    });
+                    $scope.area = {nome:""};
+                    
+
+                } else {
                     db_area.update({ _id: $scope.area._id },
                         {
                             "nome": $scope.area.nome
                         }, {}, function() {
                     });
+                    $scope.areas.push(angular.copy($scope.area)); 
 
-                    $scope.areas.push(angular.copy($scope.area));
                     $scope.areas.splice($scope.indexEditar, 1);
-                    $scope.area.nome = "";
-                } else {
-
-                    db_area.insert({
-                            "nome": $scope.area.nome
-                        }, function(err, newDoc) {
-                    });
-
-                    $scope.areas.push(angular.copy($scope.area));
-                    $scope.area.nome = "";
-                    delete $scope.area._id;
+                    $scope.area = {nome:""};
                 }
             }
 
         };
 
         $scope.editar = function(area, index) {
+            console.log(area);
             $scope.area = angular.copy(area);
             $scope.indexEditar = index;
         };
