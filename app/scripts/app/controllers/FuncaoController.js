@@ -1,16 +1,18 @@
-myApp.controller('AreaController', function($scope, $q) {
+myApp.controller('FuncaoController', function($scope, $q) {
 
 
-        $scope.areas = [];
-        $scope.area = { nome: "" };
+        $scope.funcoes = [];
+        $scope.funcao = { nome: "" };
         $scope.indexEditar = "";
 
         var Datastore = require('nedb')
             , db_area = new Datastore({ filename: 'db/area.db', autoload: true });
-        //var concessionaria = new Datastore({ filename: 'db/concessionaria.json', autoload: true });
+
+        var Datastore = require('nedb')
+            , db_funcao = new Datastore({ filename: 'db/funcao.db', autoload: true });    
 
         activate().then(function(response) {
-            $scope.areas = response;
+            $scope.funcoes = response;
         });
 
 		/**
@@ -18,52 +20,69 @@ myApp.controller('AreaController', function($scope, $q) {
 		 */
         function activate() {
             var deferred = $q.defer();
+            db_funcao.find({}, function(err, newDoc) {
+                deferred.resolve(newDoc);
+            });
+            return deferred.promise;
+        }
+
+        carregarAreas().then(function(response){
+            $scope.areas = response;
+        });
+
+
+        function carregarAreas() {
+            var deferred = $q.defer();
             db_area.find({}, function(err, newDoc) {
                 deferred.resolve(newDoc);
             });
             return deferred.promise;
         }
 
+
+
 		/**
 		 * Adicionando .
 		 */
         $scope.salvar = function() {
 
-            if ($scope.area.nome !== "") {
-                if ($scope.area._id !== undefined && $scope.area._id !== "") {
-                    db_area.update({ _id: $scope.area._id },
+            if ($scope.funcao.nome !== "") {
+                if ($scope.funcao._id !== undefined && $scope.funcao._id !== "") {
+                    db_funcao.update({ _id: $scope.funcao._id },
                         {
-                            "nome": $scope.area.nome
+                            "nome": $scope.funcao.nome,
+                            "area": {nome:$scope.funcao.area.nome}
                         }, {}, function() {
                     });
 
-                    $scope.areas.push(angular.copy($scope.area));
-                    $scope.areas.splice($scope.indexEditar, 1);
-                    $scope.area.nome = "";
+                    $scope.funcoes.push(angular.copy($scope.funcao));
+                    $scope.funcoes.splice($scope.indexEditar, 1);
+                    $scope.funcao.nome = "";
                 } else {
-
-                    db_area.insert({
-                            "nome": $scope.area.nome
+                    console.log($scope.funcao.area);
+                    db_funcao.insert({
+                            "nome": $scope.funcao.nome,
+                            "area": {nome:$scope.funcao.area.nome}
                         }, function(err, newDoc) {
                     });
 
-                    $scope.areas.push(angular.copy($scope.area));
-                    $scope.area.nome = "";
-                    delete $scope.area._id;
+                    $scope.funcoes.push(angular.copy($scope.funcao));
+                    $scope.funcao.nome = "";
+                    delete $scope.funcao._id;
                 }
             }
 
         };
 
-        $scope.editar = function(area, index) {
-            $scope.area = angular.copy(area);
+        $scope.editar = function(funcao, index) {
+            $scope.funcao = angular.copy(funcao);
             $scope.indexEditar = index;
         };
 
         $scope.deletar = function(_id, index) {
-            db_area.remove({ '_id': _id }, {}, function(err, numRemoved) {
+            db_funcao.remove({ '_id': _id }, {}, function(err, numRemoved) {
             });
-            $scope.areas.splice(index, 1);
+            $scope.funcoes.splice(index, 1);
         };
 
    });
