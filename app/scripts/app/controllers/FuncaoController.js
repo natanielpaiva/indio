@@ -59,7 +59,7 @@ myApp.controller('FuncaoController', function($scope, $q) {
                     $scope.funcoes.splice($scope.indexEditar, 1);
                     $scope.funcao.nome = "";
                 } else {
-                    console.log($scope.funcao.area);
+                    //console.log($scope.funcao.area);
                     db_funcao.insert({
                             "nome": $scope.funcao.nome,
                             "area": {nome:$scope.funcao.area.nome}
