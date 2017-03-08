@@ -1,87 +1,87 @@
 <!DOCTYPE html>
 <html>
+    <head>
+        <title>Área</title>
+        <meta charset="utf-8" />
+        <link rel="stylesheet" type="text/css" href="../node_modules/bootstrap/dist/css/bootstrap.css" />
 
-<head>
-	<title>Área</title>
-	<meta charset="utf-8" />
-	<link rel="stylesheet" type="text/css" href="../node_modules/bootstrap/dist/css/bootstrap.css" />
+        <script type="text/javascript" src="../node_modules/angular/angular.js"></script>
+        <script type="text/javascript" src="../node_modules/angular-aria/angular-aria.js"></script>
+        <script type="text/javascript" src="../node_modules/angular-animate/angular-animate.js"></script>
+        <script type="text/javascript" src="../scripts/app/config.js"></script>
+        <script type="text/javascript" src="../scripts/app/controllers/AreaController.js"></script>
+    </head>
 
-	<script type="text/javascript" src="../node_modules/angular/angular.js"></script>
-	<script type="text/javascript" src="../node_modules/angular-aria/angular-aria.js"></script>
-	<script type="text/javascript" src="../node_modules/angular-animate/angular-animate.js"></script>
-	<script type="text/javascript" src="../scripts/app/config.js"></script>
-	<script type="text/javascript" src="../scripts/app/controllers/AreaController.js"></script>
-</head>
-
-<body>
-    <nav class="navbar navbar-default">
-        <div class="container-fluid">
-            <div class="navbar-header">
-                <a class="navbar-brand" href="index.html">Placar de Performance</a>
+    <body>
+        <nav class="navbar navbar-default">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="index.html">Placar de Performance</a>
+                </div>
+                <ul class="nav navbar-nav">
+                    <li><a href="concessionaria.html">Cadastro de Concessionária</a></li>
+                    <li class="active"><a href="area.html">Cadastro de Áreas</a></li>
+                    <li><a href="funcoes.html">Cadastro de Funções</a></li>
+                </ul>
             </div>
-            <ul class="nav navbar-nav">
-                <li><a href="concessionaria.html">Cadastro de Concessionária</a></li>
-				<li class="active"><a href="area.html">Cadastro de Áreas</a></li>
-				<li><a href="funcoes.html">Cadastro de Funções</a></li>
-            </ul>
+        </nav>
+
+
+        <div ng-app="myApp" >
+            <div ng-controller="AreaController">
+                <form ng-submit="salvar()">
+                    <div class="row">
+                        <div class="col-md-1">
+                        </div>
+                        <div class="col-md-2">
+                            <div class="form-group">
+                                <label>Concessionária</label>
+                                <select ng-options="concessionaria as concessionaria.nickname for concessionaria in concessionarias" ng-model="area.concessionaria"></select>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label>Nome da Área</label>
+                                <input type="text" class="form-control" ng-model="area.nome"/>
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <div class="form-group">
+                                <button type="button" class="btn btn-primary btn-block" ng-click="salvar()">Salvar</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+
+                <div class="col-md-1">
+                </div>
+                <div class="col-md-7">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th> BIR </th>
+                                <th> Área </th>
+                                <th> Ações </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="a in areas track by $index">
+                                <td> {{ a.concessionaria.bir}} </td>
+                                <td> {{ a.nome}} </td>
+                                <td>
+                                    <button type="button" class="btn btn-primary btn-xs" 
+                                            ng-click="editar(a, $index)">Editar</button>
+                                    <button type="button" class="btn btn-primary btn-xs" 
+                                            ng-click="deletar(a._id)">Deletar</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
         </div>
-    </nav>
-
-
-  <div ng-app="myApp" >
-	<div ng-controller="AreaController">
-		<form ng-submit="salvar()">
-			<div class="row">
-				<div class="col-md-1">
-				</div>
-				<div class="col-md-2">
-					<div class="form-group">
-						<label>Concessionária</label>
-						<select ng-options="concessionaria as concessionaria.nickname for concessionaria in concessionarias" ng-model="area.concessionaria"></select>
-					</div>
-				</div>
-				
-				<div class="col-md-4">
-					<div class="form-group">
-						<label>Nome da Área</label>
-						<input type="text" class="form-control" ng-model="area.nome"/>
-					</div>
-				</div>
-				<div class="col-md-2">
-					<div class="form-group">
-						<label></label>
-						<button type="button" class="btn btn-primary btn-block" ng-click="salvar()">Salvar</button>
-					</div>
-				</div>
-			</div>
-		</form>
-
-		<div class="col-md-1">
-		</div>
-		<div class="col-md-7">	
-			<table class="table table-striped">
-				<thead>
-					<tr>
-						<th> Concessionária </th>
-						<th> Área </th>
-						<th> Ações </th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr ng-repeat="a in areas track by $index">
-						<td> {{ a.bir }} </td>
-						<td> {{ a.nome }} </td>
-						<td> 
-							<button type="button" class="btn btn-primary btn-xs" ng-click="editar(a, $index)">Editar</button> 
-						 	<button type="button" class="btn btn-primary btn-xs" ng-click="deletar(a._id)">Deletar</button> 
-						</td>
-					</tr>
-				</tbody>
-			</table>		
-
-		</div>
-	</div>
-  </div>
-</body>
+    </body>
 
 </html>
