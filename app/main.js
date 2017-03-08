@@ -5,7 +5,7 @@ if (setupEvents.handleSquirrelEvent()) {
   return;
 }
 
-const electron = require('electron')
+const electron = require('electron');
 
 const logger = require('winston');
 logger.level = 'debug';

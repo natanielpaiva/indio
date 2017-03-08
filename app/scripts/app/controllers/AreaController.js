@@ -55,13 +55,12 @@ myApp.controller('AreaController', function($scope, $q) {
 		 * Adicionando .
 		 */
         $scope.salvar = function() {
-
             if ($scope.area.nome !== "") {
                 if ($scope.area._id !== undefined && $scope.area._id !== "") {
                     db_area.update({ _id: $scope.area._id },
                         {
                             "nome": $scope.area.nome,
-                            "concessionaria": {nome:$scope.area.concessionaria.nickname}
+                            "bir": $scope.area.bir
                         }, {}, function() {
                     });
 
@@ -69,10 +68,9 @@ myApp.controller('AreaController', function($scope, $q) {
                     $scope.areas.splice($scope.indexEditar, 1);
                     $scope.area.nome = "";
                 } else {
-                    console.log('Eita');
                     db_area.insert({
-                            "area": $scope.area.nome,
-                            "bir": {bir: $scope.area.concessionaria.bir}
+                            "nome": $scope.area.nome,
+                            "bir": $scope.area.concessionaria.bir
                         }, function(err, newDoc) {
                     });
 
@@ -84,7 +82,7 @@ myApp.controller('AreaController', function($scope, $q) {
 
         };
 
-        $scope.editar = function(funcao, index) {
+        $scope.editar = function(area, index) {
             $scope.area = angular.copy(area);
             $scope.indexEditar = index;
         };

@@ -67,14 +67,10 @@
                         </thead>
                         <tbody>
                             <tr ng-repeat="a in areas track by $index">
-                                <td> {{ a.concessionaria.bir}} </td>
+                                <td> {{ a.bir}} </td>
                                 <td> {{ a.nome}} </td>
-                                <td>
-                                    <button type="button" class="btn btn-primary btn-xs" 
-                                            ng-click="editar(a, $index)">Editar</button>
-                                    <button type="button" class="btn btn-primary btn-xs" 
-                                            ng-click="deletar(a._id)">Deletar</button>
-                                </td>
+                                <td> <button type="button" class="btn btn-primary btn-xs" ng-click="editar(a, $index)">Editar</button> </td>
+                                <td> <button type="button" class="btn btn-primary btn-xs" ng-click="deletar(a._id)">Deletar</button> </td>
                             </tr>
                         </tbody>
                     </table>

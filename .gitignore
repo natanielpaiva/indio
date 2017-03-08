@@ -10,3 +10,5 @@ release
 #files
 *.tgz
 *.log
+/nbproject/private/
+/nbproject
