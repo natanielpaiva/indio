@@ -6,9 +6,9 @@
   "author": "Nataniel Paiva <nataniel.paiva@gmail.com> natanielpaiva.github.io",
   "main": "main.js",
   "license": "MIT",
-  "repository" : {
-    "type" : "git",
-    "url" : "https://github.com/crilleengvall/electron-tutorial-app.git"
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/crilleengvall/electron-tutorial-app.git"
   },
   "dependencies": {
     "angular": "1.5.5",
@@ -16,19 +16,25 @@
     "angular-aria": "1.5.5",
     "angular-material": "^1.0.8",
     "bootstrap": "^3.3.7",
-    "electron-squirrel-startup": "^1.0.0",
-    "nedb": "^1.8.0",
-    "winston": "^2.2.0",
     "electron": "^1.4.5",
     "electron-installer-dmg": "^0.1.2",
     "electron-packager": "^8.1.0",
-    "electron-winstaller": "^2.4.1"
+    "electron-squirrel-startup": "^1.0.0",
+    "electron-winstaller": "^2.4.1",
+    "nedb": "^1.8.0",
+    "sqlite3": "^3.1.8",
+    "winston": "^2.2.0"
   },
   "scripts": {
+    "postinstall": "install-app-deps",
     "package-mac": "electron-packager . --overwrite --asar=true --platform=darwin --arch=x64 --icon=assets/icons/png/nissan-logo-2.png --prune=true --out=release-builds",
     "package-win": "electron-packager . --overwrite --asar=true --platform=win32 --arch=ia32 --icon=assets/icons/png/nissan-logo-2.png --prune=true --out=release-builds --version-string.CompanyName=CE --version-string.FileDescription=CE --version-string.ProductName=\"Indio Nissan\"",
     "package-linux": "electron-packager . --overwrite --asar=true --platform=linux --arch=x64 --icon=assets/icons/png/nissan-logo-2.png --prune=true --out=release-builds",
     "create-installer-mac": "electron-installer-dmg ./release-builds/indioNissan/app-darwin-x64/IndioNissanapp.app indio-nissan-app --out=release-builds --overwrite --icon=assets/icons/mac/icon.icns",
     "create-installer-win": "node installers/windows/createinstaller.js"
+  },
+  "devDependencies": {
+    "electron-builder": "^15.1.1",
+    "electron-rebuild": "^1.5.7"
   }
 }
